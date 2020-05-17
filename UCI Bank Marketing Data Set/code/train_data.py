@@ -156,8 +156,8 @@ def find_key_attrs(forest):
     fi_threshold = 5
     important_idx = np.where(feature_importance > fi_threshold)[0]
     important_features = features_list[important_idx]
-    print "\n", important_features.shape[0], "Important features(>", \
-          fi_threshold, "% of max importance)...\n"#, \
+    print ("\n", important_features.shape[0], "Important features(>", \
+          fi_threshold, "% of max importance)...\n")
             #important_features
     sorted_idx = np.argsort(feature_importance[important_idx])[::-1]
     #get the figure about important features
