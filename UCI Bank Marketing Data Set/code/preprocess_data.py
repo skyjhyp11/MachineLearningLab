@@ -59,7 +59,7 @@ def trans_num_attrs(data, numeric_attrs):
     
     for i in numeric_attrs: 
         scaler = preprocessing.StandardScaler()
-        data[i] = scaler.fit_transform(data[i])
+        data[i] = scaler.fit_transform(data[i].values.reshape(len(data[i]),1))
     return data
 
 
@@ -91,7 +91,7 @@ def fill_unknown(data, bin_attrs, cate_attrs, numeric_attrs):
 
 def train_predict_unknown(trainX, trainY, testX):
     forest = RandomForestClassifier(n_estimators=100)
-    forest = forest.fit(trainX, trainY)
+    forest = forest.fit(trainX.astype("str"), trainY.astype("str"))
     test_predictY = forest.predict(testX).astype(int)
     return pd.DataFrame(test_predictY,index=testX.index)
     
